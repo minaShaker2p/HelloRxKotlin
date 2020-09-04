@@ -1,6 +1,6 @@
 fun exampleOf(description: String, action: () -> Unit) {
-  println("\n--- Example of: $description ---")
-  action()
+    println("\n--- Example of: $description ---")
+    action()
 }
 
 const val episodeI = "The Phantom Menace"
@@ -15,3 +15,7 @@ const val episodeVI = "Return of the Jedi"
 const val episodeVII = "The Force Awakens"
 const val episodeVIII = "The Last Jedi"
 const val episodeIX = "Episode IX"
+
+fun divider() {
+    println("------------------------------------------------------------------")
+}

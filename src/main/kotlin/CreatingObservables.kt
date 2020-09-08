@@ -1,7 +1,10 @@
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.rxkotlin.toObservable
+import java.io.File
+import kotlin.text.Charsets.UTF_8
 
 
 sealed class Droid : Throwable() {
@@ -47,6 +50,36 @@ fun createObservable() {
         )
         subscriptions.add(observer)
     }
+}
+
+fun createSingleObservable() {
+    exampleOf("Single")
+    {
+        val subscriptions = CompositeDisposable()
+
+        fun loadText(fileName: String): Single<String> {
+            return Single.create create@{ emitter ->
+                val file = File(fileName)
+                if (!file.exists()) {
+                    emitter.onError(FileReadError.FileNotFound())
+                    return@create
+                }
+
+                val contents = file.readText(UTF_8)
+                emitter.onSuccess(contents)
+            }
+        }
+
+        val observer = loadText("textFile.txt")
+            .subscribe({
+                println(it)
+            }, {
+                println("Error , $it")
+            })
+
+        subscriptions.add(observer)
+    }
+
 }
 
 

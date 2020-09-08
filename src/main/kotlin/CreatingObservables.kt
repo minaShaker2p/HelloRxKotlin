@@ -1,4 +1,6 @@
 import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.rxkotlin.toObservable
 
 
@@ -6,8 +8,7 @@ sealed class Droid : Throwable() {
     class OU812 : Droid()
 }
 
-sealed class FileReadError : Throwable()
-{
+sealed class FileReadError : Throwable() {
     class FileNotFound : FileReadError()
 }
 
@@ -27,4 +28,26 @@ fun createObservable() {
 
     //  Observable from list
     val stories = listOf<String>(solo, rogueOne).toObservable()
+
+    //  Create Observable using create operator
+    exampleOf("create")
+    {
+        val subscriptions = CompositeDisposable()
+        val versions = Observable.create<String> { emitter ->
+            emitter.onNext("Android 11")
+            emitter.onNext("Android 10")
+            emitter.onNext("Android Pie")
+            emitter.onNext("Android Nougat")
+        }
+
+        val observer = versions.subscribeBy(
+            onNext = { println(it) },
+            onError = { println("Error , $it") },
+            onComplete = { println("Completed") }
+        )
+        subscriptions.add(observer)
+    }
 }
+
+
+

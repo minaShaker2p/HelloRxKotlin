@@ -3,6 +3,11 @@ fun exampleOf(description: String, action: () -> Unit) {
     action()
 }
 
+sealed class Quote: Throwable() {
+    class NeverSaidThat : Quote()
+}
+
+
 const val episodeI = "The Phantom Menace"
 const val episodeII = "Attack of the Clones"
 const val theCloneWars = "The Clone Wars"

@@ -6,4 +6,5 @@ fun main(args: Array<String>) {
     createObservable()
     createSingleObservable()
     createPublishSubject()
+    behaviorSubjectObservable()
 }

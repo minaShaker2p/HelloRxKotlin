@@ -4,6 +4,6 @@ fun main(args: Array<String>) {
     createEmptyObservableAndSubscribe()
     createObservableAndSubscribeWithCompositeDisposable()
     createObservable()
-
     createSingleObservable()
+    createPublishSubject()
 }

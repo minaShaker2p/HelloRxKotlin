@@ -19,3 +19,7 @@ const val episodeIX = "Episode IX"
 fun divider() {
     println("------------------------------------------------------------------")
 }
+
+fun printWithLabel(label: String, message: String) {
+    println("$label $message")
+}

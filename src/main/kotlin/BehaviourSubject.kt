@@ -22,4 +22,19 @@ fun behaviorSubjectObservable() {
             onComplete = { printWithLabel("2)", "Completed") }
         ))
     }
+
+    // behavior subject is stateful
+    // store last state
+
+    exampleOf("BehaviorSubject state") {
+        val subscriptions = CompositeDisposable()
+        val quotes = BehaviorSubject.createDefault(mayTheForceBeWithYou)
+        println(quotes.value)
+
+        subscriptions.add(quotes.subscribeBy {
+            printWithLabel("1)", it)
+        })
+        quotes.onNext(mayThe4thBeWithYou)
+        println(quotes.value)
+    }
 }

@@ -36,6 +36,6 @@ fun divider() {
     println("------------------------------------------------------------------")
 }
 
-fun printWithLabel(label: String, message: String) {
+fun <T>  printWithLabel(label: String, message: T?) {
     println("$label $message")
 }

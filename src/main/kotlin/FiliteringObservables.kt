@@ -54,4 +54,18 @@ fun filterObservable() {
                 }.subscribe { println(it) }
         )
     }
+    exampleOf("SkipWhile")
+    {
+        val subscriptions = CompositeDisposable()
+
+        subscriptions.add(
+            Observable.fromIterable(_tomatometerRatings)
+                .skipWhile { movie ->
+                    // skip until this condition fail
+                    movie.rating < 90
+                } .subscribe {
+                    println(it)
+                }
+        )
+    }
 }

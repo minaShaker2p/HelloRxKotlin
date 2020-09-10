@@ -63,9 +63,34 @@ fun filterObservable() {
                 .skipWhile { movie ->
                     // skip until this condition fail
                     movie.rating < 90
-                } .subscribe {
+                }.subscribe {
                     println(it)
                 }
         )
+    }
+
+    exampleOf("SkipUntil")
+    {
+        // Skip until another observable emit something
+
+        val subscriptions = CompositeDisposable()
+        val subject = PublishSubject.create<String>()
+        val trigger = PublishSubject.create<Unit>()
+
+        subscriptions.add(
+            subject.skipUntil(trigger)
+                .subscribe {
+                    println(it)
+                })
+
+        subject.onNext(episodeI)
+        subject.onNext(episodeII)
+        subject.onNext(episodeIII)
+
+        trigger.onNext(Unit)
+
+        subject.onNext(episodeIV)
+
+
     }
 }

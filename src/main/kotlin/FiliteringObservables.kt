@@ -24,4 +24,21 @@ fun filterObservable() {
 
 
     }
+
+    exampleOf("elementAt")
+    {
+        val subscriptions = CompositeDisposable()
+        val quotes = PublishSubject.create<String>()
+        subscriptions
+            .add(quotes
+                .elementAt(2)
+                .subscribeBy(
+                    onSuccess = { println(it) }, // subscribe with onSuccess instead on Next
+                    onComplete = { println("Completed") }
+                ))
+
+        quotes.onNext(mayTheOdds)
+        quotes.onNext(liveLongAndProsper)
+        quotes.onNext(mayTheForce)
+    }
 }

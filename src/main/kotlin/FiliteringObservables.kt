@@ -54,6 +54,7 @@ fun filterObservable() {
                 }.subscribe { println(it) }
         )
     }
+
     exampleOf("SkipWhile")
     {
         val subscriptions = CompositeDisposable()
@@ -90,7 +91,16 @@ fun filterObservable() {
         trigger.onNext(Unit)
 
         subject.onNext(episodeIV)
-
-
+    }
+    exampleOf("distinctUntilChanged")
+    {
+        val subscriptions = CompositeDisposable()
+        subscriptions.add(
+            Observable.just(episodeI, episodeII, episodeII, episodeI)
+                .distinctUntilChanged()
+                .subscribe {
+                    println(it)
+                }
+        )
     }
 }

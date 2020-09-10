@@ -1,4 +1,6 @@
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.Observables
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.PublishSubject
 
@@ -40,5 +42,16 @@ fun filterObservable() {
         quotes.onNext(mayTheOdds)
         quotes.onNext(liveLongAndProsper)
         quotes.onNext(mayTheForce)
+    }
+
+    exampleOf("filter")
+    {
+        val subscriptions = CompositeDisposable()
+        subscriptions.add(
+            Observable.fromIterable(_tomatometerRatings)
+                .filter { movie ->
+                    movie.rating >= 90
+                }.subscribe { println(it) }
+        )
     }
 }

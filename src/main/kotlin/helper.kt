@@ -53,7 +53,7 @@ val _episodeVI = Movie("Return Of The Jedi", 80)
 val _episodeVII = Movie("The Force Awakens", 93)
 val _episodeVIII = Movie("The Last Jedi", 91)
 val _tomatometerRatings = listOf(
-    episodeI, episodeII, episodeIII, rogueOne, episodeIV, episodeV, episodeVI, episodeVII, episodeVIII
+    _episodeI, _episodeII, _episodeIII, _rogueOne, _episodeIV, _episodeV, _episodeVI, _episodeVII, _episodeVIII
 )
 
 

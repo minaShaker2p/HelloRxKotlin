@@ -8,4 +8,5 @@ fun main(args: Array<String>) {
     createPublishSubject()
     behaviorSubjectObservable()
     replaySubjectObservable()
+    filterObservable()
 }
